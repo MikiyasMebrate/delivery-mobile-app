@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
+import { Link, router } from 'expo-router'
 
 const RestaurantCard = ({
     id,
@@ -16,7 +17,25 @@ const RestaurantCard = ({
     lat
 }) => {
     return (
-        <TouchableOpacity className="bg-white mr-3 w-64 shadow-sm">
+        <TouchableOpacity
+            onPress={() =>
+                router.push({
+                    pathname: "/restaurant/[id]",
+                    params: {
+                        id: id,
+                        title: title,
+                        imgUrl: imgUrl,
+                        rating: rating,
+                        genre: genre,
+                        address: address,
+                        short_description: short_description,
+                        dishes: dishes,
+                        long: long,
+                        lat: lat
+                    }
+                })
+            }
+            className="bg-white mr-3 w-64 shadow-sm">
             <Image
                 source={{
                     uri: `http://127.0.0.1:8000/media/${imgUrl}`

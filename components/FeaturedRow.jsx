@@ -3,6 +3,7 @@ import React from 'react'
 import { ArrowRightIcon } from 'react-native-heroicons/outline'
 import RestaurantCard from './RestaurantCard'
 import useFetch from '../Hooks/useFetch'
+import { Link } from 'expo-router'
 
 const FeaturedRow = ({ id, title, description }) => {
     const [featuredRestaurantData, isPending, error] = useFetch(`http://127.0.0.1:8000/featured/?feature=${id}`)
@@ -39,8 +40,6 @@ const FeaturedRow = ({ id, title, description }) => {
                         lat={rest.restaurant__lat}
                     />
                 ))}
-
-
             </ScrollView>
         </View>
     )
