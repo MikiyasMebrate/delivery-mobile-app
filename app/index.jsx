@@ -1,10 +1,11 @@
 import { View, Image, Text, TextInput, ScrollView } from "react-native";
 import { useNavigation } from "expo-router"
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AdjustmentsVerticalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon, } from "react-native-heroicons/outline"
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import useFetch from "../Hooks/useFetch"
 
 
 
@@ -13,6 +14,7 @@ import FeaturedRow from "../components/FeaturedRow";
 
 export default function Page() {
   const navigation = useNavigation()
+  const [featuredCategoryData, isPending, error] = useFetch("http://127.0.0.1:8000/featured/")
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -21,6 +23,7 @@ export default function Page() {
   }, [])
   return (
     <SafeAreaView className="bg-white pt-5 ">
+
 
       {/* Header */}
       <View className="flex-row justify-between px-3">
@@ -64,33 +67,24 @@ export default function Page() {
 
 
       {/** Body */}
-      <ScrollView className="bg-gray-100 h-full">
+      <ScrollView className="bg-gray-100  ">
         {/** Categories */}
         <Categories />
 
 
         {/** Featured Rows */}
-        {/*Featured*/}
-        <FeaturedRow
-          id={1}
-          title={"Featured"}
-          description={"Paid placements from our partners"}
 
-        />
+        {featuredCategoryData?.featured?.map((feature) => (
+          <FeaturedRow
+            key={feature.id}
+            id={feature.id}
+            title={feature.name}
+            description={feature.short_description}
+          />
+        ))}
 
-        <FeaturedRow
-          id={2}
-          title={"Tasty Discount"}
-          description={"Everyone's been enjoying these juicy discounts"}
 
-        />
 
-        <FeaturedRow
-          id={3}
-          title={"Offers near you"}
-          description={"Why not support your local restaurant"}
-
-        />
 
       </ScrollView>
 

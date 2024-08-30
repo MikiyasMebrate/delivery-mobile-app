@@ -2,8 +2,11 @@ import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import { ArrowRightIcon } from 'react-native-heroicons/outline'
 import RestaurantCard from './RestaurantCard'
+import useFetch from '../Hooks/useFetch'
 
-const FeaturedRow = ({ title, description, featuredCategory }) => {
+const FeaturedRow = ({ id, title, description }) => {
+    const [featuredRestaurantData, isPending, error] = useFetch(`http://127.0.0.1:8000/featured/?feature=${id}`)
+
     return (
         <View className="px-4">
             <View className="flex-row mt-4 items-center justify-between ">
@@ -21,43 +24,22 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
             >
 
                 {/*Restaurant Card*/}
-                <RestaurantCard
-                    id={123}
-                    imgUrl="https://links.papareact.com/gn7"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="5000 Main Street"
-                    short_description="This is a test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0}
-                />
+                {featuredRestaurantData?.restaurant?.map((rest) => (
+                    <RestaurantCard
+                        key={rest.restaurant__id}
+                        id={rest.restaurant__id}
+                        imgUrl={rest.restaurant__image}
+                        title={rest.restaurant__name}
+                        rating={rest.restaurant__rating}
+                        genre="ethiopian"
+                        address={rest.restaurant__address}
+                        short_description={rest.restaurant__short_description}
+                        dishes={[]}
+                        long={rest.restaurant__long}
+                        lat={rest.restaurant__lat}
+                    />
+                ))}
 
-                <RestaurantCard
-                    id={123}
-                    imgUrl="https://links.papareact.com/gn7"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="5000 Main Street"
-                    short_description="This is a test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0}
-                />
-                <RestaurantCard
-                    id={123}
-                    imgUrl="https://links.papareact.com/gn7"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="5000 Main Street"
-                    short_description="This is a test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0}
-                />
 
             </ScrollView>
         </View>
