@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
-import { Link, router } from 'expo-router'
+import { router } from 'expo-router'
 
 const RestaurantCard = ({
     id,
@@ -16,6 +16,7 @@ const RestaurantCard = ({
     long,
     lat
 }) => {
+
     return (
         <TouchableOpacity
             onPress={() =>
@@ -29,7 +30,7 @@ const RestaurantCard = ({
                         genre: genre,
                         address: address,
                         short_description: short_description,
-                        dishes: dishes,
+                        dishes: JSON.stringify(dishes),
                         long: long,
                         lat: lat
                     }
@@ -38,7 +39,7 @@ const RestaurantCard = ({
             className="bg-white mr-3 w-64 shadow-sm">
             <Image
                 source={{
-                    uri: `http://127.0.0.1:8000/media/${imgUrl}`
+                    uri: `http://127.0.0.1:8000/${imgUrl}`
                 }}
                 className="h-36 w-64 rounded-sm"
             />

@@ -21,6 +21,8 @@ export default function Page() {
       headerShown: false,
     })
   }, [])
+
+
   return (
     <SafeAreaView className="bg-white pt-5 ">
 

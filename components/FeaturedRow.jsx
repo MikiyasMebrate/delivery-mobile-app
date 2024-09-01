@@ -7,7 +7,6 @@ import { Link } from 'expo-router'
 
 const FeaturedRow = ({ id, title, description }) => {
     const [featuredRestaurantData, isPending, error] = useFetch(`http://127.0.0.1:8000/featured/?feature=${id}`)
-
     return (
         <View className="px-4">
             <View className="flex-row mt-4 items-center justify-between ">
@@ -35,10 +34,11 @@ const FeaturedRow = ({ id, title, description }) => {
                         genre="ethiopian"
                         address={rest.restaurant__address}
                         short_description={rest.restaurant__short_description}
-                        dishes={[]}
+                        dishes={rest.dishes}
                         long={rest.restaurant__long}
                         lat={rest.restaurant__lat}
                     />
+
                 ))}
             </ScrollView>
         </View>

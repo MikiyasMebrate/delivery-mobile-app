@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { ArrowLeftIcon, ChevronRightIcon, MapPinIcon, QuestionMarkCircleIcon, StarIcon } from "react-native-heroicons/solid";
+import DishRow from "../../components/DishRow";
 
 
 const Restaurant = () => {
@@ -16,13 +17,16 @@ const Restaurant = () => {
         long,
         lat
     } = useLocalSearchParams()
+
+
+
     return (
         <ScrollView>
             <View className="relative">
                 <Image
                     className="w-full h-56 bg-gray-300 p-4"
                     source={{
-                        uri: `http://127.0.0.1:8000/media/${imgUrl}`
+                        uri: `http://127.0.0.1:8000/${imgUrl}`
                     }} />
                 <TouchableOpacity
                     onPress={() => router.push("/")}
@@ -62,6 +66,28 @@ const Restaurant = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+
+            <View>
+                <Text className="px-4 pb-3 pt-3 text-xl font-bold">
+                    Menu
+                </Text>
+
+                {/*Dishes*/}
+                {JSON.parse(dishes)?.map((dish) => (
+                    <DishRow
+                        id={dish.id}
+                        key={dish.id}
+                        name={dish.name}
+                        description={dish.short_description}
+                        price={dish.price}
+                        image={dish.image}
+                    />
+                ))}
+
+                {/*Dishes*/}
+            </View>
+
+
         </ScrollView>
     );
 }
