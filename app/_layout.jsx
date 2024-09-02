@@ -10,7 +10,12 @@ const RootLayout = () => {
         <Provider store={store}>
             <Stack>
                 <Stack.Screen name="index" />
+                <Stack.Screen name="basket" options={{
+                    headerShown: false,
+                    presentation: 'modal',
+                }} />
                 <Stack.Screen name="restaurant/[id]" options={{ headerShown: false }} />
+
             </Stack>
         </Provider>
 

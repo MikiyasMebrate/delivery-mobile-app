@@ -13,7 +13,11 @@ export const basketSlice = createSlice({
             state.items = [...state.items, action.payload]
         },
         removeFromBasket: (state, action) => {
-            state.items = []
+            const index = state.items.findIndex((item) => item.id === action.payload.id)
+
+            if (index > -1) {
+                state.items.splice(index, 1)
+            }
         },
     },
 })
@@ -26,5 +30,5 @@ export const selectBasketItemsWithId = (state, id) => {
     return state.basket.items.filter((item) => item.id === id)
 }
 
-
+export const selectBasketTotal = (state) => state.basket.items.reduce((total, item) => total += item.price, 0)
 export default basketSlice.reducer
