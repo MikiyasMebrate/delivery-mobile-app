@@ -1,20 +1,20 @@
 import { Stack } from "expo-router";
 
 
-// import { store } from '../src/app/store'
-// import { Provider } from 'react-redux'
+import { store } from '../src/redux/store'
+import { Provider } from 'react-redux'
 
 
 const RootLayout = () => {
     return (
-        // <Provider store={store}>
+        <Provider store={store}>
+            <Stack>
+                <Stack.Screen name="index" />
+                <Stack.Screen name="restaurant/[id]" options={{ headerShown: false }} />
+            </Stack>
+        </Provider>
 
-        // </Provider>
 
-        <Stack>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="restaurant/[id]" options={{ headerShown: false }} />
-        </Stack>
     );
 }
 
