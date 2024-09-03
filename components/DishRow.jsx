@@ -26,21 +26,23 @@ const DishRow = ({ id, name, description, price, image }) => {
   return (
     <>
       <TouchableOpacity onPress={() => setIsPressed(!isPressed)} className={`bg-white border ${isPressed && "border-b-0"} p-2 border-gray-200`}>
-        <View className="flex-row justify-between">
-          <View >
+        <View className="flex flex-row justify-between">
+
+          <View className="flex-1" >
             <Text className="text-lg mb-1">{name}</Text>
             <Text className="text-gray-400">{description}</Text>
-            <Text className="text-gray-400 mt-2">${price}</Text>
+            <Text className="text-gray-400 mt-2">${Math.round(price * 100) / 100}</Text>
           </View>
-          <View>
-            <Image
 
+          <View className="">
+            <Image
               source={{
-                uri: `${image}`
+                uri: image
               }}
               className="w-20 h-20 p-4 bg-gray-300"
             />
           </View>
+
         </View>
       </TouchableOpacity>
 

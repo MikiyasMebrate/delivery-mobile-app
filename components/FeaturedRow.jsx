@@ -26,17 +26,17 @@ const FeaturedRow = ({ id, title, description }) => {
                 {/*Restaurant Card*/}
                 {featuredRestaurantData?.restaurant?.map((rest) => (
                     <RestaurantCard
-                        key={rest.restaurant__id}
-                        id={rest.restaurant__id}
-                        imgUrl={rest.restaurant__image}
-                        title={rest.restaurant__name}
-                        rating={rest.restaurant__rating}
+                        key={rest.id}
+                        id={rest.id}
+                        imgUrl={rest.image}
+                        title={rest.name}
+                        rating={rest.rating}
                         genre="ethiopian"
-                        address={rest.restaurant__address}
-                        short_description={rest.restaurant__short_description}
+                        address={rest.address}
+                        short_description={rest.short_description}
                         dishes={rest.dishes}
-                        long={rest.restaurant__long}
-                        lat={rest.restaurant__lat}
+                        long={rest.longitude}
+                        lat={rest.latitude}
                     />
 
                 ))}

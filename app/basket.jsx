@@ -70,7 +70,7 @@ const BasketScreen = () => {
                                 }} />
                             <Text className="flex-1">{items[0].name}</Text>
                             <Text className="text-gray-500">
-                                ${items[0].price}
+                                ${Math.round(items[0].price * 100) / 100}
                             </Text>
                             <TouchableOpacity>
                                 <Text
