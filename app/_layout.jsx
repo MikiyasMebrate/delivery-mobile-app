@@ -21,6 +21,12 @@ const RootLayout = () => {
                         presentation: "fullScreenModal"
                     }}
                 />
+                <Stack.Screen name="delivery"
+                    options={{
+                        headerShown: false,
+                        presentation: "fullScreenModal"
+                    }}
+                />
 
             </Stack>
         </Provider>
