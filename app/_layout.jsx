@@ -15,6 +15,12 @@ const RootLayout = () => {
                     presentation: 'modal',
                 }} />
                 <Stack.Screen name="restaurant/[id]" options={{ headerShown: false }} />
+                <Stack.Screen name="preparingOrder"
+                    options={{
+                        headerShown: false,
+                        presentation: "fullScreenModal"
+                    }}
+                />
 
             </Stack>
         </Provider>

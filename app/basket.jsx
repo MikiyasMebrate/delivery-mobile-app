@@ -100,7 +100,7 @@ const BasketScreen = () => {
                         <Text className="font-extrabold">${Math.round((basketTotal + 5.99) * 100) / 100}</Text>
                     </View>
 
-                    <TouchableOpacity className="rounded-lg bg-[#00CCBB] p-4">
+                    <TouchableOpacity onPress={() => router.push("/preparingOrder")} className="rounded-lg bg-[#00CCBB] p-4">
                         <Text className="text-center text-white text-lg font-bold">Place Order</Text>
                     </TouchableOpacity>
 
